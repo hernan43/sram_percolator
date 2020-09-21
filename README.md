@@ -1,24 +1,5 @@
-# README
+# SRAM Percolator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The plan is to make this a self hostable web service for syncing game saves from software like Retroarch or something similar. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I would like this to have a simple to use API that will make it easy to write your own plugins for this.
