@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  change_password: Change your password
+  editing_profile: Editing profile for %{name}
+  edit_user_account: Edit your account
+  external_id: External Identifier
+  sram_percolator: SRAM Percolator
+  profile: Profile
+  save_changes: Save changes
+  signup_login: Signup / Login
