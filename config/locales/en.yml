@@ -30,6 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  api_key: API Key
   change_password: Change your password
   editing_profile: Editing profile for %{name}
   edit_user_account: Edit your account
