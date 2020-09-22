@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Platform</th>
       <th>User</th>
       <th colspan="3"></th>
     </tr>
@@ -16,7 +15,6 @@
     <% @games.each do |game| %>
       <tr>
         <td><%= game.name %></td>
-        <td><%= game.platform %></td>
         <td><%= game.user_id %></td>
         <td><%= link_to 'Show', game %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>
