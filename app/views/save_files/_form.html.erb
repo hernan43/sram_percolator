@@ -1,12 +1,12 @@
 
-<%= simple_form_for(@game) do |f| %>
+<%= simple_form_for(@save_file) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
     <%= f.input :name %>
-
-    <%= f.text_field :platform_list, value: @game.send(:platform_list).to_s, placeholder: 'ex: NES, Nintendo Entertainment System' %>
+    <%= f.input :game_id %>
+    <%= f.input :notes %>
   </div>
 
   <div class="form-actions">

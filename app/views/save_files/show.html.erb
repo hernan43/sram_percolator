@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @save_file.name %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @save_file.game_id %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @save_file.notes %>
+</p>
+
+<%= link_to 'Edit', edit_save_file_path(@save_file) %> |
+<%= link_to 'Back', save_files_path %>
