@@ -28,15 +28,14 @@ class User < ApplicationRecord
     self.fullname != self.email
   end
 
-  def set_api_key
-    self.api_key = self.generate_api_key
-  end
-
   def generate_api_key
     loop do
-      token = SecureRandom.base64.tr('+/=', 'Qrt')
+      token = SecureRandom.hex(20)
       break token unless User.exists?(api_key: token)
     end
   end
 
+  def set_api_key
+    self.api_key = self.generate_api_key
+  end
 end

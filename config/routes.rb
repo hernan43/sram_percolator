@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  scope module: 'api' do
+  namespace :api do
     namespace :v1 do
+      get '/profile', to: 'users#profile', as: 'user_profile'
     end
   end
 
