@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   # GET /games
@@ -25,6 +26,7 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
+    @game.user = current_user
 
     respond_to do |format|
       if @game.save
@@ -69,6 +71,6 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.require(:game).permit(:name, :platform, :user_id)
+      params.require(:game).permit(:name, :platform)
     end
 end
