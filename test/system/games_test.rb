@@ -16,6 +16,7 @@ class GamesTest < ApplicationSystemTestCase
 
     fill_in "Name", with: @game.name
     fill_in "Platform", with: @game.platform
+    fill_in "User", with: @game.user_id
     click_on "Create Game"
 
     assert_text "Game was successfully created"
@@ -28,6 +29,7 @@ class GamesTest < ApplicationSystemTestCase
 
     fill_in "Name", with: @game.name
     fill_in "Platform", with: @game.platform
+    fill_in "User", with: @game.user_id
     click_on "Update Game"
 
     assert_text "Game was successfully updated"

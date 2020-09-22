@@ -3,7 +3,9 @@
 one:
   name: MyString
   platform: MyString
+  user_id: 1
 
 two:
   name: MyString
   platform: MyString
+  user_id: 1
