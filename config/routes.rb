@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/profile', to: 'users#profile', as: 'user_profile'
 
-      resources :games
+      resources :games do
+        resources :save_files
+      end
     end
   end
 
