@@ -1,6 +1,6 @@
 class Api::V1::ApiController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
-
+  skip_forgery_protection
   before_action :authenticate
 
   protected
