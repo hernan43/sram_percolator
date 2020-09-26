@@ -5,7 +5,12 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = current_user.games.order(:name)
+    @tag = params[:tag]
+    if @tag.blank?
+      @games = current_user.games.order(:name)
+    else
+      @games = current_user.games.tagged_with(@tag)
+    end
   end
 
   # GET /games/1

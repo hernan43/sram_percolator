@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def profile
+    @tags = current_user.games.tag_counts_on(:platforms)
   end
 
   def update

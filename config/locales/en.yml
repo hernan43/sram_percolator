@@ -30,15 +30,20 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  actions: Actions
   api_key: API Key
   change_password: Change your password
   checksum: Checksum
   editing_profile: Editing profile for %{name}
   edit_user_account: Edit your account
   external_id: External Identifier
-  sram_percolator: SRAM Percolator
+  games: Games
+  games_tagged_with: Games tagged with '%{tag}'
+  no_games: No games.
+  platforms: Platforms
   profile: Profile
   save_changes: Save changes
   save_files: Save files
   signup_login: Signup / Login
   sram_file: SRAM File
+  sram_percolator: SRAM Percolator

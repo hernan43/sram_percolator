@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Games</h1>
+<% if @tag.blank? %>
+<h1><%= t(:games) %></h1>
+<% else %>
+<h1><%= t(:games_tagged_with, {tag: @tag}) %></h1>
+<% end %>
 
+<% if @games.count > 0 %>
 <table class="table">
   <thead>
     <tr>
@@ -21,6 +26,9 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+<p><%= t(:no_games) %></p>
+<% end %>
 
 <br>
 

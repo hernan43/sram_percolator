@@ -4,7 +4,7 @@
         <%= current_user.fullname %>
 
         <% if current_user.has_name? %>
-            <small class="text-muted"><%= current_user.email %></small>
+          <small class="text-muted"><%= current_user.email %></small>
         <% end %>
         </h1>
     
@@ -13,9 +13,19 @@
         <dd class="col-sm-9"><%= current_user.api_key %></dd>
         </dl>
 
+        <h2><%= t(:platforms) %></h2>
+        <div class="d-flex justify-content-center">
+        <% tag_cloud(@tags, %w(tag1 tag2 tag3 tag4)) do |tag, css_class| %>
+          <%= link_to tag.name, games_path(tag: tag.name), :class => css_class %> 
+        <% end %>
+        </div>
+
+        <h3><%= t(:actions) %></h3>
+        <div class="d-flex justify-content-left">
         <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center"><%= link_to t(:edit_user_account), edit_user_profile_path %></li>
         <li class="list-group-item d-flex justify-content-between align-items-center"><%= link_to t(:change_password), edit_user_registration_path %></li>
         </ul>
+        </div>
     </div>
 </div>
