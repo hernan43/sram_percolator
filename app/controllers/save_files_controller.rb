@@ -1,10 +1,11 @@
 class SaveFilesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_save_file, only: [:show, :edit, :update, :destroy]
 
   # GET /save_files
   # GET /save_files.json
   def index
-    @save_files = SaveFile.all
+    @save_files = current_user.save_files
   end
 
   # GET /save_files/1
@@ -69,6 +70,6 @@ class SaveFilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def save_file_params
-      params.require(:save_file).permit(:name, :game_id, :notes)
+      params.require(:save_file).permit(:name, :game_id, :notes, :sram)
     end
 end

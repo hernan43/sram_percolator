@@ -9,7 +9,8 @@ class SaveFileSerializer < ActiveModel::Serializer
     if not self.object.sram.attachment.nil?
       {
         filename: self.object.sram.filename,
-        path: rails_blob_path(self.object.sram, only_path: true)
+        path: rails_blob_path(self.object.sram, only_path: true),
+        checksum: self.object.sram.checksum
       }
     end
   end

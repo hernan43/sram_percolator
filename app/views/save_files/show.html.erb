@@ -1,18 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @save_file.name %>
-</p>
+</h1>
 
 <p>
   <strong>Game:</strong>
-  <%= @save_file.game_id %>
+  <%= @save_file.game.name %>
 </p>
 
 <p>
   <strong>Notes:</strong>
   <%= @save_file.notes %>
+</p>
+
+<p>
+  <strong><%= t(:checksum) %>:</strong>
+  <%= @save_file.sram.checksum  if not @save_file.sram.attachment.nil? %>
+</p>
+
+<p>
+  <strong><%= t(:sram_file) %>:</strong>
+  <%= link_to @save_file.sram.filename, url_for(@save_file.sram) if not @save_file.sram.attachment.nil? %>
 </p>
 
 <%= link_to 'Edit', edit_save_file_path(@save_file) %> |

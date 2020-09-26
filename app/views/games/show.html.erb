@@ -1,14 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @game.name %>
-</p>
+</h1>
 
 <p>
   <strong>User:</strong>
-  <%= @game.user_id %>
+  <%= @game.user.fullname %>
 </p>
+
+<% if @game.save_files.count > 0 %>
+<h2><%= t(:save_files) %></h2>
+<ul>
+  <% @game.save_files.each do |s| %>
+  <li>
+    <%= link_to s.name, s %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
