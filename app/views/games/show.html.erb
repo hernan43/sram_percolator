@@ -9,6 +9,13 @@
   <%= @game.user.fullname %>
 </p>
 
+<p>
+  <strong><%= t(:platforms) %></strong>
+  <% @game.platforms.each do |tag| %>
+    <%= link_to tag.name, games_path(tag: tag.name) %> 
+  <% end %>
+</p>
+
 <% if @game.save_files.count > 0 %>
 <h2><%= t(:save_files) %></h2>
 <ul>
