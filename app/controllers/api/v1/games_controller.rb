@@ -9,6 +9,11 @@ class Api::V1::GamesController < Api::V1::ApiController
     render json: @game
   end
 
+  def lookup
+    @game = current_user.games.find_by_name(params[:name])
+    render json: @game
+  end
+
   private
   
   def set_game

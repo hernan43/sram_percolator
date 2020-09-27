@@ -13,13 +13,6 @@
         <dd class="col-sm-9"><%= current_user.api_key %></dd>
         </dl>
 
-        <h2><%= t(:platforms) %></h2>
-        <div class="d-flex justify-content-center">
-        <% tag_cloud(@tags, %w(tag1 tag2 tag3 tag4)) do |tag, css_class| %>
-          <%= link_to tag.name, games_path(tag: tag.name), :class => css_class %> 
-        <% end %>
-        </div>
-
         <h3><%= t(:actions) %></h3>
         <div class="d-flex justify-content-left">
         <ul class="list-group">
