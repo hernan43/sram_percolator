@@ -12,7 +12,6 @@ class Api::V1::SaveFilesController < Api::V1::ApiController
 
   def lookup
     @save_file = @game.save_files.joins(sram_attachment: :blob).where(active_storage_blobs: {checksum: params[:checksum]})
-    logger.info("PARAMS: #{params[:checksum]}")
     if not @save_file.nil?
       render json: @save_file
     else
