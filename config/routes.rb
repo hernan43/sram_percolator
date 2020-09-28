@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
       get '/games/lookup', to: 'games#lookup', as: 'game_lookup'
       resources :games do
+        get '/save_files/lookup', to: 'save_files#lookup', as: 'save_file_lookup'
         resources :save_files
       end
     end

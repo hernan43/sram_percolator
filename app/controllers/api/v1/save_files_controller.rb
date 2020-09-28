@@ -10,6 +10,16 @@ class Api::V1::SaveFilesController < Api::V1::ApiController
     render json: @save_file
   end
 
+  def lookup
+    @save_file = @game.save_files.joins(sram_attachment: :blob).where(active_storage_blobs: {checksum: params[:checksum]})
+    logger.info("PARAMS: #{params[:checksum]}")
+    if not @save_file.nil?
+      render json: @save_file
+    else
+      head :ok
+    end
+  end
+
   def create
     @save_file = SaveFile.new(save_file_params)
     @save_file.game = @game
