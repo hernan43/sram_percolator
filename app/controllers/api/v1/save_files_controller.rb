@@ -12,8 +12,8 @@ class Api::V1::SaveFilesController < Api::V1::ApiController
 
   def lookup
     @save_file = @game.save_files.joins(sram_attachment: :blob).where(active_storage_blobs: {checksum: params[:checksum]})
-    if not @save_file.nil?
-      render json: @save_file
+    if not @save_file.blank?
+      render json: @save_file.first
     else
       head :ok
     end
@@ -53,7 +53,7 @@ private
   end
 
   def save_file_params
-    params.require(:save_file).permit(:name, :notes, :sram)
+    params.require(:save_file).permit(:name, :notes, :sram, :mtime)
   end
 
 end

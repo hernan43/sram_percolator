@@ -70,6 +70,6 @@ class SaveFilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def save_file_params
-      params.require(:save_file).permit(:name, :game_id, :notes, :sram)
+      params.require(:save_file).permit(:name, :game_id, :notes, :sram, :mtime)
     end
 end
