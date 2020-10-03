@@ -40,6 +40,7 @@ en:
   external_id: External Identifier
   games: Games
   games_tagged_with: Games tagged with '%{tag}'
+  last_modified: Last modified
   no_games: No games.
   platforms: Platforms
   profile: Profile

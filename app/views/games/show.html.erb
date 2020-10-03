@@ -5,11 +5,6 @@
 </h1>
 
 <p>
-  <strong>User:</strong>
-  <%= @game.user.fullname %>
-</p>
-
-<p>
   <strong><%= t(:platforms) %></strong>
   <% @game.platforms.each do |tag| %>
     <%= link_to tag.name, games_path(tag: tag.name) %> 
@@ -19,13 +14,21 @@
 <% if @game.save_files.count > 0 %>
 <h2><%= t(:save_files) %></h2>
 <ul>
-  <% @game.save_files.each do |s| %>
+  <% @game.save_files.order(mtime: :desc).each do |s| %>
   <li>
     <% if not s.full_name.blank? %>
     <%= link_to s.full_name, s %>
     <% else %>
-      <%= link_to t(:time_ago, time_ago: time_ago_in_words(s.mtime)), s, {title: s.mtime} %> - 
+      <span title="<%= s.mtime %>" data-toggle="tooltip">
+      <%= link_to t(:time_ago, time_ago: time_ago_in_words(s.mtime)), "#savefile-#{s.id}", {'data-toggle' => 'collapse', :title => s.mtime} %>
+      </span> - 
       <%= link_to t(:download), s.sram %>
+
+      <div class="card collapse" id="savefile-<%= s.id %>">
+      <div class="card-header">
+      <%= render partial: 'save_files/info', locals: { save_file: s } %>
+      </div>
+      </div>
     <% end %>
   </li>
   <% end %>

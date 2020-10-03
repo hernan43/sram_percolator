@@ -43,7 +43,7 @@ class SaveFilesController < ApplicationController
   def update
     respond_to do |format|
       if @save_file.update(save_file_params)
-        format.html { redirect_to @save_file, notice: 'Save file was successfully updated.' }
+        format.html { redirect_to @save_file.game, notice: 'Save file was successfully updated.' }
         format.json { render :show, status: :ok, location: @save_file }
       else
         format.html { render :edit }
