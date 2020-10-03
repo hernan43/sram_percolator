@@ -34,6 +34,7 @@ en:
   api_key: API Key
   change_password: Change your password
   checksum: Checksum
+  download: Download
   editing_profile: Editing profile for %{name}
   edit_user_account: Edit your account
   external_id: External Identifier
@@ -47,3 +48,4 @@ en:
   signup_login: Signup / Login
   sram_file: SRAM File
   sram_percolator: SRAM Percolator
+  time_ago: '%{time_ago} ago'

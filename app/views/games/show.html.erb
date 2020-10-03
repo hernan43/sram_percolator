@@ -21,7 +21,12 @@
 <ul>
   <% @game.save_files.each do |s| %>
   <li>
-    <%= link_to s.name, s %>
+    <% if not s.full_name.blank? %>
+    <%= link_to s.full_name, s %>
+    <% else %>
+      <%= link_to t(:time_ago, time_ago: time_ago_in_words(s.mtime)), s %> - 
+      <%= link_to t(:download), s.sram %>
+    <% end %>
   </li>
   <% end %>
 </ul>
