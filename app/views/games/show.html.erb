@@ -24,7 +24,7 @@
     <% if not s.full_name.blank? %>
     <%= link_to s.full_name, s %>
     <% else %>
-      <%= link_to t(:time_ago, time_ago: time_ago_in_words(s.mtime)), s %> - 
+      <%= link_to t(:time_ago, time_ago: time_ago_in_words(s.mtime)), s, {title: s.mtime} %> - 
       <%= link_to t(:download), s.sram %>
     <% end %>
   </li>

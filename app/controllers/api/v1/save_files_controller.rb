@@ -11,9 +11,18 @@ class Api::V1::SaveFilesController < Api::V1::ApiController
   end
 
   def lookup
-    @save_file = @game.save_files.joins(sram_attachment: :blob).where(active_storage_blobs: {checksum: params[:checksum]})
+    @save_file = @game.save_files.joins(sram_attachment: :blob).where(active_storage_blobs: {checksum: params[:checksum]}).first
     if not @save_file.blank?
-      render json: @save_file.first
+      render json: @save_file
+    else
+      head :ok
+    end
+  end
+
+  def latest
+    @save_file = @game.save_files.order(mtime: :desc).first
+    if not @save_file.blank?
+      render json: @save_file
     else
       head :ok
     end
