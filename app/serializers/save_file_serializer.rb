@@ -1,9 +1,13 @@
 class SaveFileSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :name, :notes, :sram
+  attributes :id, :mtime, :mtime_seconds, :name, :notes, :sram
 
   belongs_to :game
+
+  def mtime_seconds
+    self.object.mtime.to_i
+  end
 
   def sram
     if not self.object.sram.attachment.nil?
