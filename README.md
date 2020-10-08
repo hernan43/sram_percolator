@@ -9,4 +9,4 @@ THIS IS A MEGA WORK IN PROGRESS
 Author
 ------
 
-Ray Hernandez :: @hernan43
+Ray Hernandez - @hernan43
