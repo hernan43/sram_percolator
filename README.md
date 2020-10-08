@@ -24,6 +24,8 @@ This app:
 
 I have some grand ideas of things I'd like to do with it(sync between MiSTer and Retroarch, convert between save formats, etc.). If I get the time I'd love to implement these things. 
 
+Right now, with the [sample MiSTer script](https://github.com/hernan43/sram_percolator/blob/master/sample_scripts/mister_saves_sync.sh) it does what I want. Lets me sync, download, and browse games/saves.
+
 ## How it runs
 
 This can be deployed like a normal run of the mill [Rails](https://rubyonrails.org/) app. The following are terrible instructions that I hope will get better over time:
