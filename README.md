@@ -15,6 +15,7 @@ I'm not sure another service is the right idea but I don't have anything better 
 This app:
 
 * is a multi-user game save syncing service
+* annotate save files with notes
 * maintains a full history of save files for each game
 * lookup games by system
 * lookup saves by checksum
