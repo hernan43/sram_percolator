@@ -41,4 +41,10 @@ class User < ApplicationRecord
   def set_api_key
     self.api_key = self.generate_api_key
   end
+
+  def platforms
+    tag_ids = ActsAsTaggableOn::Tagging.where(taggable_type: 'Game', taggable_id: self.games).pluck(:tag_id)
+    ActsAsTaggableOn::Tag.where(id: tag_ids).order(:name)
+  end
+
 end

@@ -1,39 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-9">
 
-<h1>
-  <%= @game.name %>
-</h1>
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong><%= t(:platforms) %></strong>
-  <% @game.platforms.each do |tag| %>
-    <%= link_to tag.name, games_path(tag: tag.name) %> 
-  <% end %>
-</p>
+    <h1>
+      <%= @game.name %>
+    </h1>
 
-<% if @game.save_files.count > 0 %>
-<h2><%= t(:save_files) %></h2>
-<ul>
-  <% @game.save_files.order(mtime: :desc).each do |s| %>
-  <li>
-    <% if not s.full_name.blank? %>
-    <%= link_to s.full_name, s %>
-    <% else %>
-      <span title="<%= s.mtime %>" data-toggle="tooltip">
-      <%= link_to t(:time_ago, time_ago: time_ago_in_words(s.mtime)), "#savefile-#{s.id}", {'data-toggle' => 'collapse', :title => s.mtime} %>
-      </span> - 
-      <%= link_to t(:download), s.sram %>
+    <p>
+      <strong><%= t(:platforms) %></strong>
+      <% @game.platforms.each do |tag| %>
+        <%= link_to tag.name, games_path(tag: tag.name) %> 
+      <% end %>
+    </p>
 
-      <div class="card collapse" id="savefile-<%= s.id %>">
-      <div class="card-header">
-      <%= render partial: 'save_files/info', locals: { save_file: s } %>
-      </div>
-      </div>
+    <% if @game.save_files.count > 0 %>
+    <h2><%= t(:save_files) %></h2>
+    <ul>
+      <% @game.save_files.order(mtime: :desc).each do |s| %>
+      <li>
+        <% if not s.full_name.blank? %>
+        <%= link_to s.full_name, s %>
+        <% else %>
+          <span title="<%= s.mtime %>" data-toggle="tooltip">
+          <%= link_to t(:time_ago, time_ago: time_ago_in_words(s.mtime)), "#savefile-#{s.id}", {'data-toggle' => 'collapse', :title => s.mtime} %>
+          </span> - 
+          <%= link_to t(:download), s.sram %>
+
+          <div class="card collapse" id="savefile-<%= s.id %>">
+          <div class="card-header">
+          <%= render partial: 'save_files/info', locals: { save_file: s } %>
+          </div>
+          </div>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
     <% end %>
-  </li>
-  <% end %>
-</ul>
-<% end %>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+    <%= link_to 'Edit', edit_game_path(@game) %> |
+    <%= link_to 'Back', games_path %>
+  </div>
+</div>
+
+
+<div class="row" style="margin-top: 25px;">
+<%= link_to fa_icon('trash', text: t(:delete)), @game, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, title: t(:delete) %>
+</div>

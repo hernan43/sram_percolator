@@ -1,5 +1,25 @@
-<div class="d-flex justify-content-center">
-<% tag_cloud(@tags, %w(tag1 tag2 tag3 tag4)) do |tag, css_class| %>
-  <%= link_to tag.name, games_path(tag: tag.name), :class => css_class %> 
-<% end %>
+<div class="row">
+  <div class="col-9">
+
+  <div class="card-columns">
+
+    <% @tags.each do |t| %>
+
+    <div class="card">
+      <!-- <img src="..." class="card-img-top" alt="..."> -->
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to t.name, games_path(tag: t.name) %></h5>
+        <p class="card-text"></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted"><%= current_user.games.tagged_with(t.name).count %> <%= t(:games) %></small>
+      </div>
+    </div>
+
+    <% end %>
+
+  </div>
+
+  </div>
+
 </div>
