@@ -64,3 +64,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'active_storage_validations'
 
 gem 'acts-as-taggable-on', '~> 6.0'
+
+gem "font-awesome-rails"
+
+gem 'pagy', '~> 3.5'

@@ -34,11 +34,14 @@ en:
   api_key: API Key
   change_password: Change your password
   checksum: Checksum
+  delete: Delete
   download: Download
+  edit: Edit
   editing_profile: Editing profile for %{name}
   edit_user_account: Edit your account
   external_id: External Identifier
   games: Games
+  games_like: Games matching '%{q}'
   games_tagged_with: Games tagged with '%{tag}'
   last_modified: Last modified
   no_games: No games.
@@ -46,6 +49,8 @@ en:
   profile: Profile
   save_changes: Save changes
   save_files: Save files
+  search: Search
+  show: Show
   signup_login: Signup / Login
   sram_file: SRAM File
   sram_percolator: SRAM Percolator

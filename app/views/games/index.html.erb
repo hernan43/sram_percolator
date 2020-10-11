@@ -1,31 +1,60 @@
 <p id="notice"><%= notice %></p>
 
-<% if @tag.blank? %>
-<h1><%= t(:games) %></h1>
+<h1>
+<% if not @tag.blank? %>
+  <%= t(:games_tagged_with, {tag: @tag}) %>
+<% elsif not @q.blank? %>
+  <%= t(:games_like, {q: @q}) %>
 <% else %>
-<h1><%= t(:games_tagged_with, {tag: @tag}) %></h1>
+  <%= t(:games) %>
 <% end %>
+</h1>
 
 <% if @games.count > 0 %>
+
+<% if @tag.blank? %>
+<div class="row">
+<form id="search-form" class="form-inline" style="width: 100%;" >
+    <div class="form-group col-10">
+      <input class="form-control form-control-lg" style="width: 100%;" name="q" value="<%= @q %>">
+    </div>
+    <div class="form-group col-2">
+      <input class="btn btn-primary" type="button" name="search" value="<%= t(:search) %>">
+    </div>
+</form>
+</div>
+<% end %>
+
+<div class="row">
+  <%== pagy_bootstrap_nav_js(@pagy) %>
+</div>
+
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
-      <th colspan="4"></th>
+      <th></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="games-tbody">
     <% @games.each do |game| %>
       <tr>
-        <td><%= game.name %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to game.name, game %></td>
+        <td>
+        <%= link_to fa_icon('eye'), game, title: t(:show)  %> 
+        <%= link_to fa_icon('pencil'), edit_game_path(game), title: t(:edit) %> 
+        <%= link_to fa_icon('trash'), game, method: :delete, data: { confirm: 'Are you sure?' }, title: t(:delete) %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<div class="row">
+  <%== pagy_bootstrap_nav_js(@pagy) %>
+</div>
+
 <% else %>
 <p><%= t(:no_games) %></p>
 <% end %>

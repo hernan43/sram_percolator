@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+    include Pagy::Backend
+
     protected
 
     def require_signed_in_as_admin!

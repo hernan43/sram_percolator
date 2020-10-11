@@ -26,10 +26,13 @@
             </li>
             <% else %>
             <li class="nav-item active">
-              <%= link_to t(:profile), user_profile_path, class: 'nav-link' %>
+              <%= link_to fa_icon('gamepad', text: t(:games)), games_path, class: 'nav-link' %>
             </li>
             <li class="nav-item active">
-              <%= link_to t(:logout), destroy_user_session_path, class: 'nav-link' %>
+              <%= link_to fa_icon('id-card', text: t(:profile)), user_profile_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to fa_icon('sign-out', text: t(:logout)), destroy_user_session_path, class: 'nav-link' %>
             </li>
             <% end %>
 
@@ -37,7 +40,7 @@
         </div>
     </nav>
 
-    <main role="main" class="container">
+    <main role="main" class="col-12 col-md-9 container">
       <div id="content">
         <%= yield %>
       </div>

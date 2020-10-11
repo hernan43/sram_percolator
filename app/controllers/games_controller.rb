@@ -6,11 +6,16 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @tag = params[:tag]
-    if @tag.blank?
-      @games = current_user.games.order(:name)
+    @q = params[:q]
+
+    if not @tag.blank?
+      @pagy, @games = pagy(current_user.games.tagged_with(@tag))
+    elsif not @q.blank?
+      @pagy, @games = pagy(current_user.games.where("name ILIKE ?", "%#{@q}%").order(:name))
     else
-      @games = current_user.games.tagged_with(@tag)
+      @pagy, @games = pagy(current_user.games.order(:name))
     end
+
   end
 
   # GET /games/1
