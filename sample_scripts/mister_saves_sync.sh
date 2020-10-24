@@ -1,8 +1,24 @@
 #!/usr/bin/env bash
 
-APP_URL=THE_URL_OF_YOUR_APP
+###
+# APP_URL and API_KEY are the only two pieces of information you should
+# need to update in this script to make it work.
+#
+# APP_URL is the hostname for your app
+# ex: 
+# APP_URL=http://localhost:3000
+# or maybe
+# APP_URL=https://remote.host.name
+#
+# API_KEY is the API_KEY as listed in your user profile within the app
+# ex:
+# API_KEY=3fda4e34df3e5def3d4fae4df5e3453
+###
+APP_URL=<THE_URL_OF_YOUR_APP>
+API_KEY=<GET_THIS_FROM_YOUR_USER_ACCOUNT>
+###
 API_URL=$APP_URL/api/v1
-API_KEY=GET_THIS_FROM_YOUR_USER_ACCOUNT
+
 
 CURL=/bin/curl
 
