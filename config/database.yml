@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: sram_percolator_production
-  username: sram_percolator
-  password: <%= ENV['SRAM_PERCOLATOR_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
