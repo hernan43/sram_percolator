@@ -41,6 +41,8 @@ group :development do
   #gem 'spring'
   #gem 'spring-watcher-listen', '~> 2.0.0'
 end
+# moved outside development group for webpacker/Docker
+gem 'listen', '~> 3.2'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
