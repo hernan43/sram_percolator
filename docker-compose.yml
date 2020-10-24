@@ -20,3 +20,4 @@ services:
       DATABASE_URL: postgres://postgres:password@db/postgres
       RAILS_ENV: production
       RAILS_SERVE_STATIC_FILES: 'true'
+      SECRET_KEY_BASE: youaregonnawanttochangethis
