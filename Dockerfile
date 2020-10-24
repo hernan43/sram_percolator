@@ -16,7 +16,7 @@ RUN bundle config set without 'development test'
 RUN bundle install --jobs 5
 RUN yarn install --check-files
 #RUN yarn install
-RUN bundle exec rake assets:precompile
+RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
