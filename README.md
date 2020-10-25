@@ -29,6 +29,32 @@ Right now, with the [sample MiSTer script](https://github.com/hernan43/sram_perc
 
 ## How it runs
 
+### The (hopefully) Easier Way
+
+Since standing up Rails apps isn't the most universal skill, I went ahead an [Dockerized](https://docker.org) the app so that it can be launched a little bit easier.
+
+I am not a Docker expert. I have only done the bare minimum with it, so I am probably not doing this in the best fashion BUT it does work so that is ne positive.
+
+I made a Docker Hub repo for the app: [here](https://hub.docker.com/r/hernan43/sram_percolator).
+
+  1. Install [Docker](https://docker.org) OR EVEN BETTER [Docker Desktop](https://www.docker.com/products/docker-desktop) on your platform of choice
+  2. Install [Docker Compose](https://docs.docker.com/compose/install/)
+    1.  In my case, Docker Desktop came with compose already so I didn't have to do this. 
+  2. Git clone this repo
+  3. There is a `docker-compose.yml` file in the repo. It does work out of the box but you will want to generate your own SECRET_KEY_BASE
+    1.  `rake secret` is the easy way
+  4. Run `docker-compose up`
+  5. Assuming it launched, you need to build the database
+    1. Open a bash shell on your web container `docker exec -it CONTAINER_ID /bin/bash`
+    2. You can get your container IDs by running `docker ps` - [docs](https://docs.docker.com/engine/reference/commandline/ps/)
+    3. Run `rake db:migrate` in your newly launched shell - it should run a bunch of DB junk
+  6. By default the app will launch on port 3000. 
+    1. Go to http://HOSTNAME:3000 in your browser - ex. http://localhost:3000
+  7. You will be prompted with a login page and sign up options
+  8. This is still pretty RAW so you have to poke around yourself
+
+### The More Tedious Way
+
 This can be deployed like a normal run of the mill [Rails](https://rubyonrails.org/) app. The following are terrible instructions that I hope will get better over time:
 
   1. Deploy the app - I'd like to avoid rehashing info that is all over the web. Look at any of the zillion tutorials or use [Rails Guides](https://guides.rubyonrails.org/) to see what suits you best.
