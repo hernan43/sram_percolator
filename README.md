@@ -39,17 +39,17 @@ I made a Docker Hub repo for the app: [here](https://hub.docker.com/r/hernan43/s
 
   1. Install [Docker](https://docker.org) OR EVEN BETTER [Docker Desktop](https://www.docker.com/products/docker-desktop) on your platform of choice
   2. Install [Docker Compose](https://docs.docker.com/compose/install/)
-    1.  In my case, Docker Desktop came with compose already so I didn't have to do this. 
+        1.  In my case, Docker Desktop came with compose already so I didn't have to do this. 
   2. Git clone this repo
   3. There is a `docker-compose.yml` file in the repo. It does work out of the box but you will want to generate your own SECRET_KEY_BASE
-    1.  `rake secret` is the easy way
+        1.  `rake secret` is the easy way
   4. Run `docker-compose up`
-  5. Assuming it launched, you need to build the database
-    1. Open a bash shell on your web container `docker exec -it CONTAINER_ID /bin/bash`
-    2. You can get your container IDs by running `docker ps` - [docs](https://docs.docker.com/engine/reference/commandline/ps/)
-    3. Run `rake db:migrate` in your newly launched shell - it should run a bunch of DB junk
+    6. Assuming it launched, you need to build the database
+           1. Open a bash shell on your web container `docker exec -it CONTAINER_ID /bin/bash`
+           2. You can get your container IDs by running  - [docs](https://docs.docker.com/engine/reference/commandline/ps/)
+           3. Run `rake db:migrate` in your newly launched shell - it should run a bunch of DB junk
   6. By default the app will launch on port 3000. 
-    1. Go to http://HOSTNAME:3000 in your browser - ex. http://localhost:3000
+        1. Go to http://HOSTNAME:3000 in your browser - ex. http://localhost:3000
   7. You will be prompted with a login page and sign up options
   8. This is still pretty RAW so you have to poke around yourself
 
