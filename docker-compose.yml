@@ -2,12 +2,14 @@ version: '3'
 services:
   db:
     image: postgres
+    restart: always
     volumes:
       - ./.data/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
   web:
     image: hernan43/sram_percolator
+    restart: always
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/app
