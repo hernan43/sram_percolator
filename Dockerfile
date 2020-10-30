@@ -13,7 +13,7 @@ COPY yarn.lock /app/yarn.lock
 COPY . /app
 WORKDIR /app
 RUN bundle config set without 'development test'
-RUN bundle install --jobs 5
+RUN bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3
 RUN yarn install --check-files
 #RUN yarn install
 RUN RAILS_ENV=production bundle exec rake assets:precompile
