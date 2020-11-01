@@ -14,7 +14,6 @@ services:
     volumes:
       - .:/app
       - ./.data/storage:/app/storage
-      - ./.data/logs:/app/logs
     ports:
       - "3000:3000"
     depends_on:
