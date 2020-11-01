@@ -20,7 +20,6 @@ COPY . /app
 
 RUN yarn install --check-files
 RUN RAILS_ENV=production bundle exec rake assets:precompile
-RUN RAILS_ENV=production bundle exec rails webpacker:compile
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
