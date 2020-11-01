@@ -13,7 +13,7 @@ COPY . /app
 WORKDIR /app
 RUN bundle config set without 'development test'
 #RUN bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3
-RUN bundle install --retry 3
+RUN bundle install --jobs 3 --retry 3
 RUN yarn install --check-files
 RUN RAILS_ENV=production bundle exec rake assets:precompile
 
@@ -23,4 +23,4 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
