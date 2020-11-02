@@ -14,8 +14,8 @@ COPY Gemfile.lock /app/Gemfile.lock
 COPY package.json /app/package.json
 COPY yarn.lock /app/yarn.lock
 RUN bundle config set without 'development test'
-#RUN bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3
-RUN bundle install --jobs 3 --retry 3
+RUN bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3
+#RUN bundle install --jobs 3 --retry 3
 COPY . /app
 
 RUN yarn install --check-files
