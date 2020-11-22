@@ -25,7 +25,7 @@ CURL=/bin/curl
 
 SAVES_DIR=/media/fat/saves
 BACKUP_DIR=/media/fat/saves_backup
-BACKUP_COUNT=10
+BACKUP_COUNT=100
 PLATFORMS=`ls -d $SAVES_DIR/*`
 CACHE_DIR=/media/fat/Scripts/.cache/sync_saves
 LAST_RUN_FILE=$CACHE_DIR/last_run
@@ -192,7 +192,7 @@ do
           OUTPUT_FILE_ENCODED=`basename $SRAM_PATH`
           OUTPUT_FILE=`html_unescape $OUTPUT_FILE_ENCODED`
           echo "Downloading $SRAM_URL..."
-          curl $SRAM_URL -s -o "$PLATFORM_DIR/$OUTPUT_FILE"
+          curl $SRAM_URL -L -s -o "$PLATFORM_DIR/$OUTPUT_FILE"
         else
           echo "Skipping download..."
         fi
