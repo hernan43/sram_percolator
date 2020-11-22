@@ -12,7 +12,11 @@ class Api::V1::GamesController < Api::V1::ApiController
   end
 
   def index
-    render json: current_user.games.order(:name)
+    if not params[:mtime].empty?
+      render json: current_user.games.joins(:save_files).where('save_files.mtime >= ?', DateTime.parse(params[:mtime])).order(:name)
+    else
+      render json: current_user.games.order(:name)
+    end
   end
 
   def lookup
