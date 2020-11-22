@@ -16,6 +16,7 @@
 ###
 APP_URL=<THE_URL_OF_YOUR_APP>
 API_KEY=<GET_THIS_FROM_YOUR_USER_ACCOUNT>
+NOTES="Uploaded from MiSTer" # this can be whatever
 ###
 API_URL=$APP_URL/api/v1
 
@@ -26,6 +27,9 @@ SAVES_DIR=/media/fat/saves
 BACKUP_DIR=/media/fat/saves_backup
 BACKUP_COUNT=10
 PLATFORMS=`ls -d $SAVES_DIR/*`
+CACHE_DIR=/media/fat/Scripts/.cache/sync_saves
+LAST_RUN_FILE=$CACHE_DIR/last_run
+LAST_RUN=
 
 function html_escape {
   echo $1 | curl -Gso /dev/null -w %{url_effective} --data-urlencode @- "" | sed -E 's/..(.*).../\1/'
@@ -51,6 +55,16 @@ function get_mtime {
 
 function get_mtime_seconds {
   stat -c %Y "$1"
+}
+
+function get_last_run {
+  if [ -f "$LAST_RUN_FILE" ]; then
+    LAST_RUN=`cat $LAST_RUN_FILE`
+  fi
+}
+
+function update_last_run {
+  date +%s > $LAST_RUN_FILE
 }
 
 function get_game {
@@ -84,15 +98,21 @@ function upload_save_file {
   SAVE_FILE_PATH="$2"
   MTIME=`get_mtime "$SAVE_FILE_PATH"`
   MTIME_ESC=`html_escape "$MTIME"` 
+  #NOTES_ESC=`html_escape "$NOTES"`
   URL="$API_URL/games/$GAME_ID/save_files"
   curl -s --request POST "$URL" --header "Authorization: Token $API_KEY" \
    --form "save_file[mtime]=$MTIME" \
+   --form "save_file[notes]=$NOTES" \
    --form "save_file[sram]=@\"$SAVE_FILE_PATH\""
 }
+
+echo "Getting LAST_RUN..."
+get_last_run
 
 echo "Creating save dir backup..."
 DATE_DIR=`date +'%Y-%m-%d-%H%M%S'`
 RSYNC_DEST=$BACKUP_DIR/$DATE_DIR
+mkdir -p $CACHE_DIR
 mkdir -p $RSYNC_DEST # make sure the target exists
 rsync -r $SAVES_DIR/ $RSYNC_DEST
 if [ $BACKUP_COUNT -gt 0 ]; then
@@ -112,11 +132,19 @@ do
     echo "Checking $PLATFORM..."
     for SAVE_PATH in "$PLATFORM_DIR"/*
     do
+
       SAVE_FILE=`basename "$SAVE_PATH"`
+      LOCAL_MTIME_SECONDS=`get_mtime_seconds "$SAVE_PATH"`
+
+      if [ ! -z "$LAST_RUN" ] && [ "$LAST_RUN" -ge "$LOCAL_MTIME_SECONDS" ]; then
+	echo "$SAVE_FILE not updated since last run, skipping..."
+        continue
+      fi
+
       GAME="${SAVE_FILE%.*}"
-      echo "Checking for existence of $GAME in percolator..."
       OUTPUT=`get_game "$GAME"`
       GAME_ID=`get_json_val "['id']" "$OUTPUT"`
+      echo "Checking for existence of $GAME in percolator..."
       if [ -z "$GAME_ID" ]; then
         echo "does not exist creating..."
         OUTPUT=`create_game "$GAME" "$PLATFORM"`
@@ -148,7 +176,6 @@ do
         DOWNLOAD=true
       else
         # check if latest remote save file is newer than the local save file
-        LOCAL_MTIME_SECONDS=`get_mtime_seconds "$SAVE_PATH"`
         echo "Local mtime: $LOCAL_MTIME_SECONDS"
         echo "Remote mtime: $REMOTE_MTIME_SECONDS"
         if [ $REMOTE_MTIME_SECONDS -gt $LOCAL_MTIME_SECONDS ]; then
@@ -175,3 +202,6 @@ do
   fi
   echo
 done
+
+echo "Updating LAST_RUN..."
+update_last_run
