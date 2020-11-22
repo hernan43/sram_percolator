@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+#
+#
+# DO NOT USE THIS SCRIPT
+# IT IS LOADED WITH ISSUES
+# SOME OF THESE ISSUES COULD BREAK YOUR SAVES
+# USE IT AS A TEMPLATE BUT MAKE YOUR OWN
+# SOMETHING THAT WORKS FOR YOUR USE CASE
+#
+#
+
+
 ###
 # APP_URL and API_KEY are the only two pieces of information you should
 # need to update in this script to make it work.
